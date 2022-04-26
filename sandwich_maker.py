@@ -106,3 +106,10 @@ class SandwichMaker:
                 has_sauce = True
            
         return has_vegetable and has_sauce and self.is_well_composed()
+    def get_aliment_counter(self):
+        composition = {}
+        for aliment in self.__sandwich:
+            if aliment.name not in composition:
+                composition[aliment.name] = 0
+            composition[aliment.name] += 1
+        return composition
