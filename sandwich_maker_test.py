@@ -1,5 +1,5 @@
 import unittest
-from sandwich_maker import SandwichMaker, Lettuce, SliceOfBread, Ham, Cheese
+from sandwich_maker import SandwichMaker, Lettuce, SliceOfBread, Ham, Cheese, Mayonnaise
 
 
 class SandwichMakerTestCase(unittest.TestCase):
@@ -68,6 +68,35 @@ class SandwichMakerTestCase(unittest.TestCase):
         sandwich.add(Lettuce())		
         sandwich.reset()
         self.assertEqual(sandwich.size(), 0)
+
+    def test_is_complete(self):
+         sandwich = SandwichMaker()
+         sandwich.add(SliceOfBread())
+         sandwich.add(Lettuce())
+         sandwich.add(Mayonnaise())
+         sandwich.add(SliceOfBread())
+         self.assertTrue(sandwich.is_complete())
+   
+    def test_is_not_complete_with_not_well_composed(self):
+         sandwich = SandwichMaker()
+         sandwich.add(SliceOfBread())
+         sandwich.add(Lettuce())
+         sandwich.add(Mayonnaise())
+         self.assertFalse(sandwich.is_complete())
+   
+    def test_is_not_complete_with_no_vegetable(self):
+         sandwich = SandwichMaker()
+         sandwich.add(SliceOfBread())
+         sandwich.add(Mayonnaise())
+         sandwich.add(SliceOfBread())
+         self.assertFalse(sandwich.is_complete())
+   
+    def test_is_not_complete_with_no_sauce(self):
+         sandwich = SandwichMaker()
+         sandwich.add(SliceOfBread())
+         sandwich.add(Lettuce())
+         sandwich.add(SliceOfBread())
+         self.assertFalse(sandwich.is_complete())
 
 
 if __name__ == "__main__":
